@@ -7,26 +7,25 @@ const BlogFeed = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
-  // Redirect if the user is not logged in
   if (!localStorage.getItem("token")) {
     navigate("/l");
   }
 
-  const userId = localStorage.getItem("userId"); // Assuming the userId is stored in localStorage when logged in
+  const userId = localStorage.getItem("userId");
 
-  // Logout function
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
-    navigate("/l"); // Redirect to login page after logout
+    navigate("/l");
   };
 
-  // Fetch posts from backend API
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/posts/allPosts"); // Replace with your backend API endpoint
-        setPosts(response.data.posts || []); // Ensure posts is always an array
+        const response = await axios.get(
+          "http://localhost:8080/posts/allPosts"
+        );
+        setPosts(response.data.posts || []);
         setLoading(false);
       } catch (error) {
         console.error("Error fetching posts:", error.message);
@@ -37,20 +36,18 @@ const BlogFeed = () => {
     fetchPosts();
   }, []);
 
-  // Handle like/unlike post
   const handleLike = async (postId) => {
     try {
       console.log("PostID: ", postId);
       console.log("UserID: ", userId);
       const response = await axios.put(
         `http://localhost:8080/posts/likePost/${postId}`,
-        { userId } // Send the logged-in user's ID
+        { userId }
       );
       const updatedPost = response.data.post;
-      
-      // Update the post's likes and state to avoid accessing undefined properties
-      setPosts(prevPosts =>
-        prevPosts.map(post =>
+
+      setPosts((prevPosts) =>
+        prevPosts.map((post) =>
           post._id === postId ? { ...post, likes: updatedPost.likes } : post
         )
       );
@@ -60,7 +57,11 @@ const BlogFeed = () => {
   };
 
   if (loading) {
-    return <div className="text-center mt-5 text-lg font-medium text-gray-600">Loading posts...</div>;
+    return (
+      <div className="text-center mt-5 text-lg font-medium text-gray-600">
+        Loading posts...
+      </div>
+    );
   }
 
   return (
@@ -85,21 +86,23 @@ const BlogFeed = () => {
               >
                 <div className="flex items-center mb-4">
                   <div className="rounded-full bg-blue-200 w-12 h-12 flex items-center justify-center text-white font-bold text-lg">
-                    {/* Safe access of userId and name */}
-                    {post.userId && post.userId.name ? post.userId.name[0].toUpperCase() : 'N/A'}
+                    {post.userId && post.userId.name
+                      ? post.userId.name[0].toUpperCase()
+                      : "N/A"}
                   </div>
                   <div className="ml-4">
                     <p className="font-semibold text-gray-800">
-                      {/* Safely check if userId and name exist */}
-                      {post.userId && post.userId.name ? post.userId.name : 'Anonymous'}
+                      {post.userId && post.userId.name
+                        ? post.userId.name
+                        : "Anonymous"}
                     </p>
                     <p className="text-sm text-gray-500">{post.createdAt}</p>
                   </div>
                 </div>
-                <h2 className="text-xl font-bold text-gray-900 mb-2">{post.title}</h2>
-                <p className="text-gray-700 mb-4 line-clamp-2">
-                  {post.body}
-                </p>
+                <h2 className="text-xl font-bold text-gray-900 mb-2">
+                  {post.title}
+                </h2>
+                <p className="text-gray-700 mb-4 line-clamp-2">{post.body}</p>
                 {post.media && post.mediaType === "image" && (
                   <img
                     src={post.media}
@@ -115,26 +118,30 @@ const BlogFeed = () => {
                   />
                 )}
 
-                {/* Tags with proper styling for each tag */}
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {post.tags && post.tags.length > 0 && post.tags.map((tag, index) => (
-                    <span
-                      key={index}
-                      className="text-xs font-medium bg-blue-100 text-blue-600 rounded-full px-4 py-1 border border-blue-300"
-                    >
-                      #{tag}
-                    </span>
-                  ))}
+                  {post.tags &&
+                    post.tags.length > 0 &&
+                    post.tags.map((tag, index) => (
+                      <span
+                        key={index}
+                        className="text-xs font-medium bg-blue-100 text-blue-600 rounded-full px-4 py-1 border border-blue-300"
+                      >
+                        #{tag}
+                      </span>
+                    ))}
                 </div>
 
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-500 text-sm">👍 {post.likes ? post.likes.length : 0}</span>
+                  <span className="text-gray-500 text-sm">
+                    👍 {post.likes ? post.likes.length : 0}
+                  </span>
                   <button
                     onClick={() => handleLike(post._id)}
                     className="text-blue-600 font-medium hover:underline"
                   >
-                    {/* Make sure likes array is defined */}
-                    {post.likes && post.likes.includes(userId) ? "Unlike" : "Like"}
+                    {post.likes && post.likes.includes(userId)
+                      ? "Unlike"
+                      : "Like"}
                   </button>
                   <button className="text-blue-600 font-medium hover:underline">
                     Read More →

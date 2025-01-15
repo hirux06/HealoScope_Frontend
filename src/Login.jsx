@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,25 +9,30 @@ const Login = () => {
 
   const loginUser = async (loginData) => {
     try {
-        const response = await axios.post("http://localhost:8080/users/login", loginData);
-        console.log("Login successful:", response.data);
+      const response = await axios.post(
+        "http://localhost:8080/users/login",
+        loginData
+      );
+      console.log("Login successful:", response.data);
 
-        if (response.data.token) {
-          localStorage.setItem("token", response.data.token); 
-          localStorage.setItem("userId", response.data.user.id); 
-          navigate("/feed"); 
-        }
+      if (response.data.token) {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userId", response.data.user.id);
+        navigate("/feed");
+      }
     } catch (error) {
-        console.error("Error during login:", error.response?.data?.message || error.message);
-        throw error;
+      console.error(
+        "Error during login:",
+        error.response?.data?.message || error.message
+      );
+      throw error;
     }
-};
+  };
 
   const handleLogin = (e) => {
     e.preventDefault();
     const loginData = { email, password };
 
-    // Call API for user login
     console.log("User Login Data:", loginData);
 
     loginUser(loginData);

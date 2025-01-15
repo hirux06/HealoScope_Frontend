@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-
 const UserSignUp = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -11,29 +10,33 @@ const UserSignUp = () => {
   const navigate = useNavigate();
 
   const registerUser = async (userData) => {
-        try {
-            const response = await axios.post("http://localhost:8080/users/registerUser", userData);
-            console.log("Registration successful:", response.data);
-            if (response.data.token) {
-              localStorage.setItem("token", response.data.token); 
-              localStorage.setItem("userId", response.data.user._id); 
-              navigate("/feed"); 
-            }
-        } catch (error) {
-            console.error("Error during registration:", error.response?.data?.message || error.message);
-            throw error;
-        }
-    };
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/users/registerUser",
+        userData
+      );
+      console.log("Registration successful:", response.data);
+      if (response.data.token) {
+        localStorage.setItem("token", response.data.token);
+        localStorage.setItem("userId", response.data.user._id);
+        navigate("/feed");
+      }
+    } catch (error) {
+      console.error(
+        "Error during registration:",
+        error.response?.data?.message || error.message
+      );
+      throw error;
+    }
+  };
 
   const handleSignUp = (e) => {
     e.preventDefault();
     const userData = { name, email, username, password, role: "user" };
 
-    // Call API for user sign-up
     console.log("User Sign-Up Data:", userData);
-    
+
     registerUser(userData);
-    
   };
 
   return (
