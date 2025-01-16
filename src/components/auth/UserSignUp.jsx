@@ -43,7 +43,7 @@ const UserSignUp = () => {
   return (
     <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-green-100 via-blue-50 to-teal-100 px-4">
       <div className="flex flex-col md:flex-row bg-white rounded-lg shadow-xl overflow-hidden max-w-4xl w-full">
-        {/* Left Section: Image */}
+        
         <div className="md:w-1/2 hidden md:flex justify-center items-center bg-transparent">
           <img
             src={UserImg}
@@ -52,13 +52,13 @@ const UserSignUp = () => {
           />
         </div>
 
-        {/* Right Section: Form */}
+        
         <div className="md:w-1/2 w-full p-8">
           <h2 className="text-3xl font-extrabold mb-6 text-center text-teal-600">
             User Sign-Up
           </h2>
           <form onSubmit={handleSignUp} className="grid grid-cols-1 gap-4">
-            {/* Full Name */}
+            
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1">
                 Full Name
@@ -73,7 +73,7 @@ const UserSignUp = () => {
               />
             </div>
 
-            {/* Email */}
+            
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1">
                 Email
@@ -88,7 +88,7 @@ const UserSignUp = () => {
               />
             </div>
 
-            {/* Username */}
+            
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1">
                 Username
@@ -103,7 +103,7 @@ const UserSignUp = () => {
               />
             </div>
 
-            {/* Password */}
+            
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1">
                 Password
@@ -118,7 +118,7 @@ const UserSignUp = () => {
               />
             </div>
 
-            {/* Submit Button */}
+            
             <div>
               <button
                 type="submit"

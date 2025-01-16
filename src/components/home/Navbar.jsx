@@ -4,16 +4,16 @@ const Navbar = () => {
 
   return (
     <div>
-      {/* Navbar */}
+      
       <nav className="flex items-center justify-between p-4 shadow-md bg-white">
-        {/* Logo */}
+        
         <div className="text-2xl font-bold text-black">
           <Link to="/">
             Healo<span className="text-red-500">Scope</span>
           </Link>
         </div>
 
-        {/* Navigation Buttons */}
+        
         <div className="flex items-center space-x-4">
           <Link to="/login" className="bg-red-500 text-white px-6 py-2 rounded-full font-medium hover:bg-white hover:text-red-600 hover: border border-red-500 transition">
             Login
