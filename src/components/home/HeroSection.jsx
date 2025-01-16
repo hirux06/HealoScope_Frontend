@@ -1,6 +1,6 @@
 import React from "react";
-import HeroImage from "../../assets/hero_img.svg"; // Add your image in the `assets` folder
-import { Link, useNavigate } from "react-router-dom";
+import HeroImage from "../../assets/hero_img.svg"; 
+import { Link } from "react-router-dom";
 
 
 const HeroSection = () => {

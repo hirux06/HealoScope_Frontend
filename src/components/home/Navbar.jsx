@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 const Navbar = () => {
 
-
- 
   return (
     <div>
       {/* Navbar */}
@@ -11,7 +9,7 @@ const Navbar = () => {
         {/* Logo */}
         <div className="text-2xl font-bold text-black">
           <Link to="/">
-            <span className="text-red-500">Healo</span>Scope
+            Healo<span className="text-red-500">Scope</span>
           </Link>
         </div>
 
