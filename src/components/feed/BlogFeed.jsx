@@ -56,7 +56,7 @@ const BlogFeed = () => {
   };
 
   const handleComment = (postId) => {
-    // Placeholder for comment action (if you want to implement comment functionality)
+    
     console.log("Go to post comments:", postId);
   };
 
@@ -69,7 +69,11 @@ const BlogFeed = () => {
   }
 
   return (
-    <div className="bg-red-50 min-h-screen py-10 px-4">
+    <>
+    
+    
+
+    <div className="bg-red-50 min-h-screen py-10 px-4 ml-80">
       
 
       <div className="flex justify-center">
@@ -172,6 +176,7 @@ const BlogFeed = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

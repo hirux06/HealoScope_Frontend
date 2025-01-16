@@ -10,6 +10,8 @@ import Home from './components/home/Home.jsx';
 import Navbar from './components/home/Navbar.jsx';
 import About from './components/utitlities/About.jsx';
 import Contact from './components/utitlities/Contact.jsx';
+import Feed from './components/feed/Feed.jsx';
+import CreatePost from './components/posts/CreatePost.jsx';
 
 const App = () => {
   return (
@@ -20,10 +22,11 @@ const App = () => {
         <Route path="/uSign" element={<UserSignUp />} />
         <Route path="/dSign" element={<DoctorSignUp />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/feed" element={<BlogFeed />} />
+        <Route path="/feed" element={<Feed />} />
         <Route path="/profile/:userId" element={<ProfilePage />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/create" element={<CreatePost />} />
       </Routes>
     </Router>
   )

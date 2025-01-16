@@ -9,12 +9,12 @@ const ProfilePage = () => {
 
   const {userId} = useParams();
 
-  // Fetch user data based on userId
+  
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(`http://localhost:8080/users/profile/${userId}`);
-        setUser(response.data); // Store user data in state
+        setUser(response.data); 
       } catch (error) {
         console.error("Error fetching profile data:", error);
       }

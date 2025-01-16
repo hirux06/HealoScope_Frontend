@@ -45,7 +45,7 @@ const Login = () => {
         
         <div className="md:w-1/2 hidden md:flex justify-center items-center bg-gradient-to-br from-red-300  ">
           <img
-            src={LoginImg} // Replace with your image URL
+            src={LoginImg} 
             alt="Login Illustration"
             className="w-full h-full object-cover"
           />

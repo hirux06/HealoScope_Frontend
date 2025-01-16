@@ -58,7 +58,7 @@ const DoctorSignUp = () => {
         
         <div className="md:w-1/2 hidden md:flex justify-center items-center">
           <img
-            src={RegImg} // Replace with your image URL
+            src={RegImg} 
             alt="Doctor Illustration"
             className="w-full h-full object-cover"
           />
