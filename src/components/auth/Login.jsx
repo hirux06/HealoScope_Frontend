@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import LoginImg from "../../assets/login.webp"
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -44,7 +45,7 @@ const Login = () => {
         
         <div className="md:w-1/2 hidden md:flex justify-center items-center bg-gradient-to-br from-red-300  ">
           <img
-            src="https://via.placeholder.com/400x500" // Replace with your image URL
+            src={LoginImg} // Replace with your image URL
             alt="Login Illustration"
             className="w-full h-full object-cover"
           />
