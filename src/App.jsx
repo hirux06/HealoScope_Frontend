@@ -12,6 +12,9 @@ import About from './components/utitlities/About.jsx';
 import Contact from './components/utitlities/Contact.jsx';
 import Feed from './components/feed/Feed.jsx';
 import CreatePost from './components/posts/CreatePost.jsx';
+import Unauthorized from './components/errors/Unauthorized.jsx';
+import PageNotFound from './components/errors/PageNotFound.jsx';
+import EditProfile from './components/profile/EditProfile.jsx';
 
 const App = () => {
   return (
@@ -27,6 +30,9 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/create" element={<CreatePost />} />
+        <Route path="/editProfile" element={<EditProfile />} />
+        <Route path="/unauthorized" element={<Unauthorized />} />
+        <Route path="/*" element={<PageNotFound />} />
       </Routes>
     </Router>
   )

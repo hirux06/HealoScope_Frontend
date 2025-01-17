@@ -23,14 +23,14 @@ const Feed = () => {
 
   return (
     <div className="flex justify-center p-4 bg-gray-50">
-       {/* <div className="flex justify-end mb-6 h-fit w-48"> */}
+      
       <Link
         to="/create"
-        className="bg-red-500 text-white px-6 py-2 rounded-full font-medium hover:bg-white-600 transition h-fit w-40 fixed top-28 left-14"
+        className="bg-red-500 text-white px-6 py-2 rounded-full font-medium hover:bg-white-600 transition h-fit w-40 absolute top-28 left-14"
       >
         + Create Post
       </Link>
-      {/* </div>  */}
+      
       <div className="fixed bottom-4 right-4">
         <Link
           to="/create"
@@ -41,25 +41,14 @@ const Feed = () => {
         </Link>
       </div>
 
-      {/* <div className="flex w-full"> */}
-         {/* Profile Section
-         <div className="hidden lg:block w-2 ml-8">
-          {user ? (
-            <Profile user={user} id={userId} />
-          ) : (
-            <div className="text-gray-500 text-center mt-4">Loading profile...</div>
-          )}
-        </div> */}
-        {/* BlogFeed Section */}
-        {/* <div className="flex-1 w-1/2"> */}
+      
           <BlogFeed />
-        {/* </div> */}
-        {/* <div className=""> */}
+      
           <Profile user={user} id={userId} />
-        {/* </div>  */}
+        
 
        
-      {/* </div> */}
+      
     </div>
   );
 };

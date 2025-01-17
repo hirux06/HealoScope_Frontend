@@ -19,9 +19,13 @@ const Login = () => {
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("userId", response.data.user.id);
+        localStorage.setItem("role", response.data.user.role); 
         navigate("/feed");
       }
     } catch (error) {
+      alert("Credentials are invalid!! Kindly enter again");
+      setEmail("");
+      setPassword("");
       console.error(
         "Error during login:",
         error.response?.data?.message || error.message
