@@ -103,6 +103,7 @@ const BlogFeed = () => {
                       </Link>
                     </p>
                     <p className="text-sm text-gray-500">{post.createdAt}</p>
+                    <p className="text-blue-700 font-semibold cursor-pointer hover:underline">+ Follow</p>
                   </div>
                 </div>
 
@@ -164,9 +165,7 @@ const BlogFeed = () => {
                     </button>
                   </div>
 
-                  <button className="text-blue-600 font-medium hover:underline">
-                    Read More →
-                  </button>
+                  
                 </div>
               </div>
             ))
