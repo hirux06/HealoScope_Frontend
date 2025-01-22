@@ -7,6 +7,7 @@ import axios from "axios";
 const Feed = () => {
   const userId = localStorage.getItem("userId");
   const [user, setUser] = useState(null);
+  const userRole = localStorage.getItem("role");
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -24,12 +25,13 @@ const Feed = () => {
   return (
     <div className="flex justify-center p-4 bg-gray-50">
       
-      <Link
+      {userRole === "doctor" ? (
+        <Link
         to="/create"
         className="bg-red-500 text-white px-6 py-2 rounded-full font-medium hover:bg-white-600 transition h-fit w-40 absolute top-28 left-14"
       >
         + Create Post
-      </Link>
+      </Link>) : null}
       
       <div className="fixed bottom-4 right-4">
         <Link
@@ -44,7 +46,7 @@ const Feed = () => {
       
           <BlogFeed />
       
-          <Profile user={user} id={userId} />
+          <Profile user={user} id={userId} className={"ml-8"}/>
         
 
        

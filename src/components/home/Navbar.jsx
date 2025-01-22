@@ -1,37 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import useAuthStatus from "../hooks/useAuthStatus";
 
 const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const navigate = useNavigate();
+  
+
+  const { isLoggedIn, handleLogout } = useAuthStatus();
+ 
 
   
-  const checkLoginStatus = () => {
-    const userId = localStorage.getItem("userId"); 
-    setIsLoggedIn(!!userId); 
-  };
-
-  useEffect(() => {
-    
-    checkLoginStatus();
-
-    
-    window.addEventListener("storage", checkLoginStatus);
-
-    return () => {
-      
-      window.removeEventListener("storage", checkLoginStatus);
-    };
-  });
-
   
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userId");
-    localStorage.removeItem("role");
-    setIsLoggedIn(false); 
-    navigate("/login"); 
-  };
 
   return (
     <div>

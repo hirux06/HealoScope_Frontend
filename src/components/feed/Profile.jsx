@@ -1,13 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const ProfileCard = ({ user, id }) => {
+const ProfileCard = ({ user, id, className }) => {
   const navigate = useNavigate();
 
   if (!user) return null;
+  const classs = "bg-white shadow-md rounded-md p-4 w-80 h-fit " + className;
 
   return (
-    <div className="bg-white shadow-md rounded-md p-4 w-80 h-fit ml-8">
+    <div className={classs} >
       <div className="flex items-center">
         <div className="w-14 h-14 rounded-full bg-green-400 flex justify-center items-center text-white text-xl font-bold">
           {user.users.name ? user.users.name[0].toUpperCase() : "U"}

@@ -59,6 +59,7 @@ const CreatePost = () => {
           value={tags}
           onChange={(e) => setTags(e.target.value)}
           className="w-full border p-2 rounded mb-4"
+          required
         />
         <button
           type="submit"
