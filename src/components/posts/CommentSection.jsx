@@ -98,10 +98,10 @@ const CommentSection = ({ postId }) => {
                   >
                     <img
                       src={
-                        comment.userId.profilePic ||
+                        // comment.userId.profilePic ||
                         "https://via.placeholder.com/40"
                       }
-                      alt={comment.userId.name}
+                      // alt={comment.userId.name}
                       className="w-10 h-10 rounded-full object-cover"
                     />
                     <div className="flex-1">

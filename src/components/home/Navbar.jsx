@@ -3,20 +3,15 @@ import { Link, useNavigate } from "react-router-dom";
 import useAuthStatus from "../hooks/useAuthStatus";
 
 const Navbar = () => {
-  
 
   const { isLoggedIn, handleLogout } = useAuthStatus();
- 
-
-  
-  
 
   return (
     <div>
       <nav className="flex items-center justify-between p-4 shadow-md bg-white">
         
         <div className="text-2xl font-bold text-black">
-          <Link to="/">
+          <Link to={isLoggedIn ? "/feed" : "/"}>
             Healo<span className="text-red-500">Scope</span>
           </Link>
         </div>

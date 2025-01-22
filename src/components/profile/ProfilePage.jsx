@@ -15,68 +15,46 @@ const ProfilePage = ({ currentUser }) => {
       try {
         const response = await axios.get(`http://localhost:8080/users/profile/${userId}`);
         const userData = response.data;
-  
+
         setUser(userData);
-  
+
         
-        if (userData.users.isFollowing) { 
-          setIsFollowing(true);
-        }
+        // if (userData.users.followers.includes(currentUser)) {
+        //   setIsFollowing(true);  
+        // } else {
+        //   setIsFollowing(false);
+        // }
       } catch (error) {
         console.error("Error fetching profile data:", error);
       }
     };
-  
+
     fetchUserData();
   }, [userId, currentUser]);
-  
 
-  const handleFollow = async () => {
-    const url = isFollowing
-      ? `http://localhost:8080/users/unfollow/${userId}`
-      : `http://localhost:8080/users/follow/${userId}`;
+  // const handleFollow = async () => {
+  //   const url = isFollowing
+  //     ? `http://localhost:8080/users/unfollow/${userId}`
+  //     : `http://localhost:8080/users/follow/${userId}`;
   
-    try {
-      const response = await axios.put(url, { userId });
+  //   try {
+  //     const response = await axios.put(
+  //       url,
+  //       {userId}
+  //     );
   
-      setIsFollowing(!isFollowing);
-  
-      
-      setUser((prevUser) => ({
-        ...prevUser,
-        followers: response.data.followers, 
-        following: response.data.following, 
-      }));
-    } catch (error) {
-      console.error("Error following/unfollowing:", error.message);
-    }
-    navigate(`/profile/${userId}`);
-  };
-  
-
-  const handleUnfollow = async () => {
-    const url = `http://localhost:8080/users/unfollow/${userId}`;
-  
-    try {
-      const response = await axios.put(url, { userId });
-  
-      setIsFollowing(false);
-  
-      
-      setUser((prevUser) => ({
-        ...prevUser,
-        followers: response.data.followers,
-        following: response.data.following,
-      }));
-    } catch (error) {
-      console.error("Error unfollowing:", error.message);
-    }
-  };
+  //     setIsFollowing(!isFollowing);
+  //     setUser((prevUser) => ({
+  //       ...prevUser,
+  //       followers: response.data.followers,
+  //       following: response.data.following,
+  //     }));
+  //   } catch (error) {
+  //     console.error("Error following/unfollowing:", error.message);
+  //   }
+  // };
   
   
-  
-  
-
   if (!user) {
     return <div className="loader">Loading...</div>;
   }
@@ -99,7 +77,7 @@ const ProfilePage = ({ currentUser }) => {
               {user?.users?.createdAt ? new Date(user.users.createdAt).toLocaleDateString() : "N/A"}
             </p>
             <button
-              onClick={handleFollow}
+              // onClick={handleFollow}
               className={`px-4 py-2 rounded ${
                 isFollowing ? "bg-gray-300" : "bg-blue-500 text-white"
               }`}
@@ -112,19 +90,19 @@ const ProfilePage = ({ currentUser }) => {
         <div className="grid grid-cols-3 gap-6 mb-8">
           <div className="text-center">
             <p className="font-semibold text-red-600">
-              {user?.users?.followers?.length || 0}
+              {/* {user?.users?.followers.length || 0} */}0
             </p>
             <p className="text-gray-600">Followers</p>
           </div>
           <div className="text-center">
             <p className="font-semibold text-red-600">
-              {user?.users?.following?.length || 0}
+              {/* {user?.users?.following.length || 0} */}0
             </p>
             <p className="text-gray-600">Following</p>
           </div>
           <div className="text-center">
             <p className="font-semibold text-red-600">
-              {user?.users?.experienceYears || 0} Years
+              {/* {user?.users?.experienceYears || 0} Years */}0
             </p>
             <p className="text-gray-600">Experience</p>
           </div>
