@@ -10,8 +10,13 @@ const ProfileCard = ({ user, id, className }) => {
   return (
     <div className={classs} >
       <div className="flex items-center">
-        <div className="w-14 h-14 rounded-full bg-green-400 flex justify-center items-center text-white text-xl font-bold">
+        <div className="w-14 h-14 rounded-full flex justify-center items-center text-white text-xl font-bold">
+            {user.users.profilePicture ? <img
+            src={user?.users?.profilePicture}
+            alt="Profile"
+          /> : <div className="w-14 h-14 rounded-full border-none bg-green-400 flex justify-center items-center text-white text-xl font-bold">
           {user.users.name ? user.users.name[0].toUpperCase() : "U"}
+        </div>}
         </div>
         <div className="ml-4">
           <h3 className="text-lg font-semibold">{user.users.name}</h3>

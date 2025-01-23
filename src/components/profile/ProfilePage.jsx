@@ -53,6 +53,16 @@ const ProfilePage = ({ currentUser }) => {
   //     console.error("Error following/unfollowing:", error.message);
   //   }
   // };
+
+  const formattedDate = user?.users?.createdAt
+  ? (() => {
+      const [date, time] = user.users.createdAt.split(" "); 
+      const [day, month, year] = date.split("-"); 
+      const isoDate = `${year}-${month}-${day}T${time}`; 
+      const parsedDate = new Date(isoDate);
+      return isNaN(parsedDate.getTime()) ? "Invalid Date" : parsedDate.toLocaleDateString("en-IN");
+    })()
+  : "N/A";
   
   
   if (!user) {
@@ -63,18 +73,18 @@ const ProfilePage = ({ currentUser }) => {
     <div className="bg-red-100 min-h-screen py-10 px-4">
       <div className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
         <div className="flex items-center mb-8">
-          <img
-            src={userImg}
+          {user.users.profilePicture ? <img
+            src={user?.users?.profilePicture}
             alt="Profile"
             className="w-24 h-24 rounded-full border-4 border-red-500 object-cover"
-          />
+          /> : (<div className="w-24 h-24 rounded-full border-4 border-red-500 flex justify-center items-center text-white text-xl font-bold"> {user.users.name.toUpperCase()[0]} </div>)}
           <div className="ml-6">
             <h1 className="text-3xl font-bold text-red-600">
               {user?.users?.name || "Unknown User"}
             </h1>
             <p className="text-lg text-gray-700">{user?.users?.email}</p>
             <p className="text-sm text-gray-500">
-              {user?.users?.createdAt ? new Date(user.users.createdAt).toLocaleDateString() : "N/A"}
+              {formattedDate}
             </p>
             <button
               // onClick={handleFollow}

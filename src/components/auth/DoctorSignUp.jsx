@@ -13,11 +13,38 @@ const DoctorSignUp = () => {
   const [experienceYears, setExperienceYears] = useState("");
   const navigate = useNavigate();
 
+  const [profilePic, setProfilePic] = useState(null); // New state for profile picture
+
+  const handleFileChange = (e) => {
+    setProfilePic(e.target.files[0]); 
+  };
+
   const registerDoctor = async (doctorData) => {
     try {
+
+
+      const formData = new FormData(); 
+      formData.append("name", doctorData.name);
+      formData.append("email", doctorData.email);
+      formData.append("username", doctorData.username);
+      formData.append("password", doctorData.password);
+      formData.append("specialization", doctorData.specialization);
+      formData.append("bio", doctorData.bio);
+      formData.append("experienceYears", doctorData.experienceYears);
+      formData.append("role", "doctor");
+      if (profilePic){
+        formData.append("profilePic", profilePic);
+      }else{
+        formData.append("profilePic", "https://res.cloudinary.com/dehlsuf9r/image/upload/v1737645526/healoscope-profile-pics/default_snczqp.jpg");
+      }
+
+      
       const response = await axios.post(
         "http://localhost:8080/users/registerUser",
-        doctorData
+        formData,
+        {headers: {
+          "Content-Type": "multipart/form-data",
+        }},
       );
       console.log("Registration successful:", response.data);
       if (response.data.token) {
@@ -69,7 +96,7 @@ const DoctorSignUp = () => {
           <h2 className="text-3xl font-extrabold mb-6 text-center text-red-600">
             Doctor Sign-Up
           </h2>
-          <form onSubmit={handleSignUp} className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <form onSubmit={handleSignUp} className="grid grid-cols-1 md:grid-cols-2 gap-4" encType="multipart/form-data">
             
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-1">
@@ -179,6 +206,18 @@ const DoctorSignUp = () => {
               >
                 Sign Up
               </button>
+            </div>
+
+            <div className="col-span-2">
+              <label className="block text-sm font-semibold text-gray-700 mb-1">
+                Profile Picture
+              </label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-400"
+              />
             </div>
           </form>
         </div>
