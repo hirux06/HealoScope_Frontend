@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import "./feed.css";
 import CommentSection from "../posts/CommentSection";
+import ReactMarkdown from "react-markdown"; 
 
 const BlogFeed = () => {
   const [posts, setPosts] = useState([]);
@@ -48,6 +49,22 @@ const BlogFeed = () => {
       );
     } catch (error) {
       console.error("Error liking the post:", error.message);
+    }
+  };
+
+  const handleDelete = async (postId) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:8080/posts/deletePost/${postId}`
+      );
+      console.log("Post deleted:", response.data);
+
+      
+      setPosts((prevPosts) =>
+        prevPosts.filter((post) => post._id !== postId)
+      );
+    } catch (error) {
+      console.error("Error deleting the post:", error.message);
     }
   };
 
@@ -103,7 +120,7 @@ const BlogFeed = () => {
                     {post.title}
                   </h2>
                   <div className="text-gray-700 mb-6 px-4 py-3 bg-gray-50 rounded-lg post-body">
-                    {post.body}
+                  <ReactMarkdown>{post.body}</ReactMarkdown>
                   </div>
                   {post.media && post.mediaType === "image" && (
                     <img
@@ -152,12 +169,20 @@ const BlogFeed = () => {
                         className="text-blue-600 font-medium hover:bg-gray-300 hover:p-1 flex items-center space-x-1"
                       >
                         <span>💬</span>
-
                         <span>
                           <CommentSection postId={post._id} />
                         </span>
                       </button>
                     </div>
+                    {post.userId._id === userId && (
+                      <button
+                        onClick={() => handleDelete(post._id)}
+                        className="text-red-600 font-medium hover:bg-gray-300 hover:p-1 flex items-center space-x-1"
+                      >
+                        <span>🗑️</span>
+                        <span>Delete</span>
+                      </button>
+                    )}
                   </div>
                 </div>
               ))

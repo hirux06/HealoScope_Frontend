@@ -13,7 +13,7 @@ const DoctorSignUp = () => {
   const [experienceYears, setExperienceYears] = useState("");
   const navigate = useNavigate();
 
-  const [profilePic, setProfilePic] = useState(null); // New state for profile picture
+  const [profilePic, setProfilePic] = useState(null); 
 
   const handleFileChange = (e) => {
     setProfilePic(e.target.files[0]); 
