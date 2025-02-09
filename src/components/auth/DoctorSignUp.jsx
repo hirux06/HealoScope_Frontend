@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import RegImg from "../../assets/reg_img.avif"
+import RegImg from "../../assets/reg_img.avif";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 const DoctorSignUp = () => {
   const [name, setName] = useState("");
@@ -40,7 +42,7 @@ const DoctorSignUp = () => {
 
       
       const response = await axios.post(
-        "http://localhost:8080/users/registerUser",
+        `${BASE_URL}/users/registerUser`,
         formData,
         {headers: {
           "Content-Type": "multipart/form-data",

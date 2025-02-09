@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import "./feed.css";
 import CommentSection from "../posts/CommentSection";
 import ReactMarkdown from "react-markdown"; 
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 const BlogFeed = () => {
   const [posts, setPosts] = useState([]);
@@ -20,7 +22,7 @@ const BlogFeed = () => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8080/posts/allPosts"
+          `${BASE_URL}posts/allPosts`
         );
         const fetchedPosts = response.data.posts || [];
         setPosts(fetchedPosts.reverse());
@@ -37,7 +39,7 @@ const BlogFeed = () => {
   const handleLike = async (postId) => {
     try {
       const response = await axios.put(
-        `http://localhost:8080/posts/likePost/${postId}`,
+        `${BASE_URL}/posts/likePost/${postId}`,
         { userId }
       );
       const updatedPost = response.data.post;
@@ -55,7 +57,7 @@ const BlogFeed = () => {
   const handleDelete = async (postId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:8080/posts/deletePost/${postId}`
+        `${BASE_URL}/posts/deletePost/${postId}`
       );
       console.log("Post deleted:", response.data);
 

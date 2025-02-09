@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 const CommentSection = ({ postId }) => {
   const [comments, setComments] = useState([]);
@@ -13,7 +15,7 @@ const CommentSection = ({ postId }) => {
       const fetchComments = async () => {
         try {
           const response = await axios.get(
-            `http://localhost:8080/comments/getCommentsByPost/${postId}`
+            `${BASE_URL}/comments/getCommentsByPost/${postId}`
           );
           setComments(response.data.comments);
           setLoading(false);
@@ -31,7 +33,7 @@ const CommentSection = ({ postId }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/comments/addComment",
+        `${BASE_URL}comments/addComment`,
         {
           userId,
           postId,
@@ -48,7 +50,7 @@ const CommentSection = ({ postId }) => {
   const handleDeleteComment = async (commentId) => {
     try {
       await axios.delete(
-        `http://localhost:8080/comments/deleteComment/${commentId}`
+        `${BASE_URL}comments/deleteComment/${commentId}`
       );
       setComments(comments.filter((comment) => comment._id !== commentId));
     } catch (error) {

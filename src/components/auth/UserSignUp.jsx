@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import UserImg from "../../assets/user_reg.avif";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 const UserSignUp = () => {
   const [name, setName] = useState("");
@@ -13,7 +15,7 @@ const UserSignUp = () => {
   const registerUser = async (userData) => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/users/registerUser",
+        `${BASE_URL}users/registerUser`,
         userData
       );
       console.log("Registration successful:", response.data);

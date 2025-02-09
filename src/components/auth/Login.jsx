@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import LoginImg from "../../assets/login.webp"
+import LoginImg from "../../assets/login.webp";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -11,7 +13,7 @@ const Login = () => {
   const loginUser = async (loginData) => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/users/login",
+        `${BASE_URL}users/login`,
         loginData
       );
       console.log("Login successful:", response.data);

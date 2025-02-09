@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 const EditProfile = () => {
   const navigate = useNavigate();
@@ -16,7 +18,7 @@ const EditProfile = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/users/profile/${userId}`);
+        const response = await axios.get(`${BASE_URL}/users/profile/${userId}`);
         setUserData(response.data.users);
         setLoading(false);
       } catch (error) {
@@ -39,7 +41,7 @@ const EditProfile = () => {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:8080/users/editProfile/${userId}`,
+        `${BASE_URL}/users/editProfile/${userId}`,
         userData
       );
       alert("Profile updated successfully!");

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown"; 
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
@@ -22,7 +24,7 @@ const CreatePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8080/posts/createPost", {
+      const response = await axios.post(`${BASE_URL}posts/createPost`, {
         title,
         body,
         tags: tags.split(",").map((tag) => tag.trim()),
@@ -37,7 +39,7 @@ const CreatePost = () => {
 
   const handleGenerateAIContent = async () => {
     try {
-      const response = await axios.post("http://localhost:8080/ai/generate", { prompt: aiPrompt });
+      const response = await axios.post(`${BASE_URL}/ai/generate`, { prompt: aiPrompt });
       const generatedContent = response.data.content;
       console.log(generatedContent);
       setBody(generatedContent); 

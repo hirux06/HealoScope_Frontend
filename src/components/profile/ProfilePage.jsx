@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import userImg from "../../assets/default.jpeg";
+const BASE_URL = import.meta.env.VITE_BACKEND_URL;
+
 
 const ProfilePage = ({ currentUser }) => {
   const [user, setUser] = useState(null);
@@ -13,7 +15,7 @@ const ProfilePage = ({ currentUser }) => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/users/profile/${userId}`);
+        const response = await axios.get(`${BASE_URL}/users/profile/${userId}`);
         const userData = response.data;
 
         setUser(userData);
