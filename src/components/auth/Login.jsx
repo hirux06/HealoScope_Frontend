@@ -9,11 +9,11 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-
+  
   const loginUser = async (loginData) => {
     try {
       const response = await axios.post(
-        `${BASE_URL}users/login`,
+        `${BASE_URL}/users/login`,
         loginData
       );
       console.log("Login successful:", response.data);

@@ -24,7 +24,7 @@ const CreatePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${BASE_URL}posts/createPost`, {
+      const response = await axios.post(`${BASE_URL}/posts/createPost`, {
         title,
         body,
         tags: tags.split(",").map((tag) => tag.trim()),

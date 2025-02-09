@@ -22,7 +22,7 @@ const BlogFeed = () => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get(
-          `${BASE_URL}posts/allPosts`
+          `${BASE_URL}/posts/allPosts`
         );
         const fetchedPosts = response.data.posts || [];
         setPosts(fetchedPosts.reverse());

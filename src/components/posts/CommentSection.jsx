@@ -33,7 +33,7 @@ const CommentSection = ({ postId }) => {
 
     try {
       const response = await axios.post(
-        `${BASE_URL}comments/addComment`,
+        `${BASE_URL}/comments/addComment`,
         {
           userId,
           postId,
@@ -50,7 +50,7 @@ const CommentSection = ({ postId }) => {
   const handleDeleteComment = async (commentId) => {
     try {
       await axios.delete(
-        `${BASE_URL}comments/deleteComment/${commentId}`
+        `${BASE_URL}/comments/deleteComment/${commentId}`
       );
       setComments(comments.filter((comment) => comment._id !== commentId));
     } catch (error) {

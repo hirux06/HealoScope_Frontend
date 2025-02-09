@@ -14,7 +14,7 @@ const Feed = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get(`${BASE_URL}users/profile/${userId}`);
+        const response = await axios.get(`${BASE_URL}/users/profile/${userId}`);
         setUser(response.data); 
       } catch (error) {
         console.error("Error fetching profile data:", error);

@@ -15,7 +15,7 @@ const UserSignUp = () => {
   const registerUser = async (userData) => {
     try {
       const response = await axios.post(
-        `${BASE_URL}users/registerUser`,
+        `${BASE_URL}/users/registerUser`,
         userData
       );
       console.log("Registration successful:", response.data);
